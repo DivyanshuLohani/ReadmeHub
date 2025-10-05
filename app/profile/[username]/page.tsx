@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ContributionGraph } from "@/components/contribution-graph"
 import { Metadata, ResolvingMetadata } from 'next'
 import { ShareButton } from "@/components/share-button"
+export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ username: string }>

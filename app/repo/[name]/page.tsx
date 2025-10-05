@@ -1,6 +1,9 @@
 import RepoPage from './components/repo_page'
 import { Metadata } from "next"
 
+// Dynamic
+export const dynamic = 'force-dynamic'
+
 type Props = {
   params: Promise<{ name: string }>
 }
