@@ -6,10 +6,32 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ContributionGraph } from "@/components/contribution-graph"
+import { Metadata, ResolvingMetadata } from 'next'
+import { ShareButton } from "@/components/share-button"
+
+type Props = {
+  params: { username: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const username = params.username
+
+  return {
+    title: `${username}'s Profile | ReadmeHub`,
+    description: `Check out ${username}'s contributions on ReadmeHub.`,
+    openGraph: {
+      images: [`/api/profile/${username}/og`],
+    },
+  }
+}
+
 
 export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
-  
+
   const user = await prisma.user.findUnique({
     where: { username },
     include: {
@@ -39,7 +61,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-blue-900 to-cyan-800">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-4">
           <Link href="/dashboard">
@@ -61,6 +83,16 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
               </div>
             </div>
           </CardHeader>
+        </Card>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Share Your Profile</CardTitle>
+            <CardDescription>Share your ReadmeHub profile with the world!</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ShareButton />
+          </CardContent>
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

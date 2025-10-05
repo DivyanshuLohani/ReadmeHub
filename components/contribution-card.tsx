@@ -31,7 +31,7 @@ export function ContributionCard({ username, contributionType, repoName, date }:
 
   return (
     <div className="space-y-4">
-      <div ref={cardRef} className="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-8 rounded-lg">
+      <div ref={cardRef} className="bg-gradient-to-br from-indigo-950 via-blue-900 to-cyan-800 p-8 rounded-lg">
         <div className="bg-white rounded-lg p-6">
           <div className="text-center space-y-4">
             <h2 className="text-3xl font-bold">ReadmeHub</h2>

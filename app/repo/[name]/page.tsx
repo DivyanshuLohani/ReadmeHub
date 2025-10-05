@@ -83,7 +83,7 @@ export default function RepoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-blue-900 to-cyan-800">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-4">
           <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20" onClick={() => router.push("/dashboard")}>
@@ -125,31 +125,31 @@ export default function RepoPage() {
                 <CardDescription>Choose your weapon</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button 
-                  className="w-full" 
+                <Button
+                  className="w-full"
                   onClick={() => handleContribute("typo")}
                   disabled={contributing}
                 >
                   Fix Typos 📝
                 </Button>
-                <Button 
-                  className="w-full" 
+                <Button
+                  className="w-full"
                   variant="secondary"
                   onClick={() => handleContribute("emoji")}
                   disabled={contributing}
                 >
                   Add Emoji 🚀
                 </Button>
-                <Button 
-                  className="w-full" 
+                <Button
+                  className="w-full"
                   variant="outline"
                   onClick={() => handleContribute("quote")}
                   disabled={contributing}
                 >
                   Add Quote 💬
                 </Button>
-                <Button 
-                  className="w-full" 
+                <Button
+                  className="w-full"
                   variant="destructive"
                   onClick={() => handleContribute("exclamation")}
                   disabled={contributing}

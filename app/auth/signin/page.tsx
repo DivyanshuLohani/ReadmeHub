@@ -33,7 +33,7 @@ export default function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-950 via-blue-900 to-cyan-800">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-3xl text-center">Welcome to ReadmeHub</CardTitle>
