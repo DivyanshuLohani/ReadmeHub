@@ -23,6 +23,13 @@ export async function generateMetadata(
     metadataBase: new URL('https://readmehub.divyanshulohani.xyz'),
     title: `${username}'s Profile | ReadmeHub`,
     description: `Check out ${username}'s contributions on ReadmeHub.`,
+    twitter: {
+      card: 'summary_large_image',
+      title: `${username}'s Profile | ReadmeHub`,
+      description: `Check out ${username}'s contributions on ReadmeHub.`,
+      images: [`/api/profile/${username}/og`],
+      creator: '@divyanshulohani',
+    },
     openGraph: {
       images: [`/api/profile/${username}/og`],
     },
