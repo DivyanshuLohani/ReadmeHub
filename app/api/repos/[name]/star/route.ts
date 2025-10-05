@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   request: Request,
-  { params }: { params: { name: string } }
+  { params }: { params: Promise<{ name: string }> }
 ) {
-  const repoName = params.name;
+  const { name: repoName } = await params;
 
   try {
     const updatedRepo = await prisma.repository.update({

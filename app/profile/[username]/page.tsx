@@ -10,16 +10,17 @@ import { Metadata, ResolvingMetadata } from 'next'
 import { ShareButton } from "@/components/share-button"
 
 type Props = {
-  params: { username: string }
+  params: Promise<{ username: string }>
 }
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const username = params.username
+  const { username } = await params;
 
   return {
+    metadataBase: new URL('https://readmehub.divyanshulohani.xyz'),
     title: `${username}'s Profile | ReadmeHub`,
     description: `Check out ${username}'s contributions on ReadmeHub.`,
     openGraph: {

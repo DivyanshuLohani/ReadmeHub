@@ -8,6 +8,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { name } = await params
   return {
+    metadataBase: new URL('https://readmehub.divyanshulohani.xyz'),
     title: `${name} | ReadmeHub`,
     description: `Contribute to ${name} on ReadmeHub`,
     openGraph: {
