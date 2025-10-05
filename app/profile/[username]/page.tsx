@@ -61,34 +61,63 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-blue-900 to-cyan-800">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-4">
+    <div className="min-h-screen bg-[#0d1117] relative overflow-hidden">
+      {/* Decorative Halloween/Hacktoberfest circles */}
+      <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-orange-500/10 blur-3xl" />
+      <div className="absolute top-40 right-20 w-40 h-40 rounded-full bg-[#183D5D]/20 blur-3xl" />
+      <div className="absolute bottom-20 left-1/4 w-36 h-36 rounded-full bg-purple-500/10 blur-3xl" />
+      <div className="absolute bottom-40 right-1/3 w-28 h-28 rounded-full bg-orange-600/10 blur-3xl" />
+
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="mb-6 flex justify-between items-center">
           <Link href="/dashboard">
-            <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20">
+            <Button variant="outline" className="bg-[#21262d] text-white border-[#30363d] hover:bg-[#30363d]">
               ← Back to Dashboard
             </Button>
           </Link>
+
+          <div className="flex items-center gap-2 px-4 py-2 bg-[#183D5D] border-2 border-orange-500 rounded-full">
+            <span className="text-2xl">🎃</span>
+            <span className="text-orange-500 font-bold text-sm tracking-wider">HACKTOBERFEST 2025</span>
+          </div>
         </div>
 
-        <Card className="mb-8">
+        <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <div className="flex items-center gap-4">
-              <Avatar className="h-20 w-20">
-                <AvatarFallback className="text-2xl">{username[0].toUpperCase()}</AvatarFallback>
-              </Avatar>
-              <div>
-                <CardTitle className="text-3xl">{username}</CardTitle>
-                <CardDescription>README Contributor Extraordinaire</CardDescription>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <Avatar className="h-24 w-24 border-4 border-orange-500 bg-[#183D5D]">
+                  <AvatarFallback className="text-3xl text-orange-500 font-bold bg-[#183D5D]">
+                    {username[0].toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <CardTitle className="text-4xl text-white mb-2">{username}</CardTitle>
+                  <CardDescription className="text-orange-500 text-lg font-semibold flex items-center gap-2">
+                    📝 Professional README Editor
+                  </CardDescription>
+                  <div className="flex gap-2 mt-3">
+                    <Badge className="bg-orange-500/20 text-orange-500 border border-orange-500/50">
+                      Elite Typo Fixer
+                    </Badge>
+                    <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500/50">
+                      Whitespace Warrior
+                    </Badge>
+                  </div>
+                </div>
               </div>
             </div>
           </CardHeader>
         </Card>
 
-        <Card className="mb-8">
+        <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <CardTitle>Share Your Profile</CardTitle>
-            <CardDescription>Share your ReadmeHub profile with the world!</CardDescription>
+            <CardTitle className="text-white flex items-center gap-2">
+              <span>🔗</span> Share Your Glory
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              Show the world your README editing prowess!
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <ShareButton />
@@ -96,59 +125,70 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card>
+          <Card className="bg-[#0d1117] border-2 border-orange-500/30 hover:border-orange-500 transition-all">
             <CardHeader>
-              <CardTitle>Total Contributions</CardTitle>
+              <CardTitle className="text-gray-300 text-sm uppercase tracking-wider">README Edits</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl font-bold">{user.contributions.length}</p>
+              <p className="text-5xl font-bold text-orange-500">{user.contributions.length}</p>
+              <p className="text-xs text-gray-500 mt-2">Each one matters! 🏆</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-[#0d1117] border-2 border-purple-500/30 hover:border-purple-500 transition-all">
             <CardHeader>
-              <CardTitle>Badges Earned</CardTitle>
+              <CardTitle className="text-gray-300 text-sm uppercase tracking-wider">Badges Earned</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl font-bold">{user.badges.length}</p>
+              <p className="text-5xl font-bold text-purple-400">{user.badges.length}</p>
+              <p className="text-xs text-gray-500 mt-2">Totally official 🎖️</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-[#0d1117] border-2 border-red-500/30 hover:border-red-500 transition-all">
             <CardHeader>
-              <CardTitle>Quality Meter</CardTitle>
+              <CardTitle className="text-gray-300 text-sm uppercase tracking-wider">Code Quality</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl font-bold text-red-500">0/10</p>
+              <p className="text-5xl font-bold text-red-500">0/10</p>
+              <p className="text-xs text-gray-500 mt-2">Who needs code? 😎</p>
             </CardContent>
           </Card>
         </div>
 
-        <Card className="mb-8">
+        <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <CardTitle>Contribution Graph</CardTitle>
-            <CardDescription>Your README editing activity (with random colors for extra flair!)</CardDescription>
+            <CardTitle className="text-white flex items-center gap-2">
+              <span>📊</span> Contribution Heatmap
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              Your README editing activity over time (with random colors for extra authenticity!)
+            </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="bg-[#0d1117] rounded-lg p-4 border border-[#21262d]">
             <ContributionGraph contributions={user.contributions} />
           </CardContent>
         </Card>
 
         {user.badges.length > 0 && (
-          <Card className="mb-8">
+          <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
             <CardHeader>
-              <CardTitle>Achievements</CardTitle>
-              <CardDescription>Your collection of prestigious badges</CardDescription>
+              <CardTitle className="text-white flex items-center gap-2">
+                <span>🏅</span> Hall of Fame
+              </CardTitle>
+              <CardDescription className="text-gray-400">
+                Your prestigious collection of highly coveted badges
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {user.badges.map((userBadge) => (
-                  <div key={userBadge.id} className="p-4 border rounded-lg">
+                  <div key={userBadge.id} className="p-4 border-2 border-[#30363d] rounded-lg bg-[#161b22] hover:border-orange-500/50 transition-all">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl">{userBadge.badge.icon}</span>
+                      <span className="text-5xl">{userBadge.badge.icon}</span>
                       <div>
-                        <h3 className="font-semibold">{userBadge.badge.name}</h3>
-                        <p className="text-sm text-muted-foreground">{userBadge.badge.description}</p>
+                        <h3 className="font-semibold text-white">{userBadge.badge.name}</h3>
+                        <p className="text-sm text-gray-400">{userBadge.badge.description}</p>
                       </div>
                     </div>
                   </div>
@@ -158,48 +198,65 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
           </Card>
         )}
 
-        <Card className="mb-8">
+        <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <CardTitle>Contribution Breakdown</CardTitle>
-            <CardDescription>Your impactful contributions by type</CardDescription>
+            <CardTitle className="text-white flex items-center gap-2">
+              <span>📈</span> Contribution Breakdown
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              Your impactful contributions categorized by groundbreaking type
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {Object.entries(typeCounts).map(([type, count]) => (
-                <div key={type} className="flex justify-between items-center">
-                  <span className="capitalize">{type}s</span>
-                  <Badge variant="secondary">{count}</Badge>
+                <div key={type} className="flex justify-between items-center p-3 rounded-lg bg-[#161b22] border border-[#30363d] hover:border-orange-500/30 transition-all">
+                  <span className="capitalize text-gray-300 font-medium">{type}s</span>
+                  <Badge className="bg-orange-500/20 text-orange-500 border border-orange-500/50 text-lg px-4 py-1">
+                    {count}
+                  </Badge>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <CardTitle>Recent Contributions</CardTitle>
-            <CardDescription>Your latest README masterpieces</CardDescription>
+            <CardTitle className="text-white flex items-center gap-2">
+              <span>⭐</span> Recent Masterpieces
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              Your latest README contributions that changed the world
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {user.contributions.slice(0, 10).map((contrib) => (
-                <div key={contrib.id} className="p-4 border rounded-lg">
+                <div key={contrib.id} className="p-4 border-2 border-[#30363d] rounded-lg bg-[#161b22] hover:border-orange-500/50 transition-all">
                   <div className="flex justify-between items-start">
-                    <div>
-                      <Link href={`/repo/${contrib.repository.name}`} className="font-semibold hover:underline">
+                    <div className="flex-1">
+                      <Link href={`/repo/${contrib.repository.name}`} className="font-semibold text-white hover:text-orange-500 transition-colors">
                         {contrib.repository.name}
                       </Link>
-                      <p className="text-sm text-muted-foreground">
-                        {contrib.type} - {new Date(contrib.createdAt).toLocaleDateString()}
+                      <p className="text-sm text-gray-400 mt-1">
+                        {contrib.type} • {new Date(contrib.createdAt).toLocaleDateString()}
                       </p>
                     </div>
-                    <Badge variant="outline" className="capitalize">{contrib.type}</Badge>
+                    <Badge className="capitalize bg-[#183D5D] text-orange-500 border border-orange-500/50">
+                      {contrib.type}
+                    </Badge>
                   </div>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
+
+        <div className="mt-8 text-center text-gray-500 text-sm">
+          <p>🎃 Powered by ReadmeHub • Where Every Typo Fix Counts • Hacktoberfest Approved* 🎃</p>
+          <p className="text-xs mt-1">*Not actually approved by anyone</p>
+        </div>
       </div>
     </div>
   )

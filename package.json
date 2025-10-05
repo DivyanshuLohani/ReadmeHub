@@ -4,10 +4,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev -p 5000",
-    "build": "prisma generate && next build",
+    "build": "npx prisma generate && npx prisma migrate deploy && next build",
     "start": "next start -p 5000",
     "lint": "next lint",
     "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +25,7 @@
     "@types/node": "^24.6.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@vercel/analytics": "^1.5.0",
     "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -35,11 +39,15 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.64.0",
+    "react-markdown": "^10.1.0",
     "recharts": "^3.2.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.18",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.9.3",
     "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19"
   }
 }
