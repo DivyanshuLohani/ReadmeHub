@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ContributionGraph } from "@/components/contribution-graph"
 import { Metadata, ResolvingMetadata } from 'next'
-import { ShareButton } from "@/components/share-button"
+import ShareButton from "@/components/share-button"
 export const dynamic = 'force-dynamic'
 
 type Props = {
@@ -121,15 +121,18 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
 
         <Card className="mb-8 bg-[#0d1117] border-2 border-[#30363d]">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
-              <span>🔗</span> Share Your Glory
+            <CardTitle className="text-white flex items-center justify-between gap-2">
+              <span>
+
+                <span>🔗</span> Share Your Glory
+              </span>
+              <ShareButton user={user} />
             </CardTitle>
             <CardDescription className="text-gray-400">
               Show the world your README editing prowess!
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ShareButton />
           </CardContent>
         </Card>
 
