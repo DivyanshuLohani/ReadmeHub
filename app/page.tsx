@@ -1,5 +1,26 @@
 import Link from "next/link";
 
+export async function generateMetadata() {
+
+  return {
+    url: 'https://readmehub.divyanshulohani.xyz',
+    title: 'ReadmeHub - The Ultimate README Contribution Platform',
+    description: 'Contribute to READMEs and become a Hacktoberfest legend!',
+    twitter: {
+      card: 'summary_large_image',
+      title: 'ReadmeHub - The Ultimate README Contribution Platform',
+      description: 'Contribute to READMEs and become a Hacktoberfest legend!',
+      images: [`/api/og`],
+      creator: '@divyanshulohani',
+    },
+    openGraph: {
+      images: [`/api/og`],
+    },
+    metadataBase: new URL('https://readmehub.divyanshulohani.xyz'),
+  }
+}
+
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0d1117] relative overflow-hidden">
