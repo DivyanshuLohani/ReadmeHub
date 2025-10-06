@@ -17,6 +17,7 @@ export default function RepoPage() {
     const [contributing, setContributing] = useState(false)
     const [stared, setStared] = useState(false)
     const [stars, setStars] = useState(0);
+    const [repositories, setRepositories] = useState<any[]>([])
 
 
     useEffect(() => {
@@ -30,6 +31,9 @@ export default function RepoPage() {
             setRepo(data.repository)
             setReadme(data.repository.readmeContent);
             setStars(data.repository.stars);
+        } else if (res.status === 404) {
+            const data = await res.json()
+            setRepositories(data.repositories);
         }
         setLoading(false)
     }
@@ -109,6 +113,24 @@ export default function RepoPage() {
                 <div className="text-center">
                     <div className="text-6xl mb-4">😢</div>
                     <p className="text-white text-xl">Repository not found</p>
+
+                    {repositories.length > 0 && (
+                        <div className="container mx-auto my-8">
+                            <p className="text-white text-lg mb-4">Did you mean one of these?</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {repositories.map((repo: any) => (
+                                    <Card key={repo.id} className="bg-[#161b22] border border-[#30363d] cursor-pointer hover:border-orange-500 transition-colors"
+                                        onClick={() => router.push(`/repo/${repo.name}`)}
+                                    >
+                                        <CardHeader>
+                                            <CardTitle className="text-white text-xl">{repo.name}</CardTitle>
+                                            <CardDescription className="text-gray-400">{repo.description}</CardDescription>
+                                        </CardHeader>
+                                    </Card>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         )

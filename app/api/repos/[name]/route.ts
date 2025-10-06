@@ -22,9 +22,22 @@ export async function GET(
         },
       },
     })
-
+    
     if (!repository) {
-      return NextResponse.json({ error: "Repository not found" }, { status: 404 })
+      const repositories = await prisma.repository.findMany({
+        include: {
+          contributions: {
+            include: {
+              user: true,
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+            take: 10,
+          },
+        },
+      });
+      return NextResponse.json({ error: "Repository not found", repositories: repositories  }, { status: 404 })
     }
 
     return NextResponse.json({ repository })
