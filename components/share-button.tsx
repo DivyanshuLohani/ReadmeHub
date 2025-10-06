@@ -5,7 +5,7 @@ import { Share2, Copy } from "lucide-react"
 
 function ShareButton({ user }: { user: any }) {
   const [copied, setCopied] = useState(false)
-  const shareUrl = typeof window !== "undefined" ? window.location.href : ""
+  const shareUrl = `https://readmehub.divyanshulohani.xyz/profile/${user.username}`;
 
   const handleShare = async () => {
     if (navigator.share) {
