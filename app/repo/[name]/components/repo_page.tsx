@@ -43,9 +43,43 @@ export default function RepoPage() {
         let newContent = readme
 
         switch (type) {
-            case "typo":
-                newContent = newContent.replace(/project/g, "projct").replace(/awesome/g, "awsome")
-                break
+            case "typo": {
+                // Common typo map
+                const typoMap: Record<string, string> = {
+                    project: "projct",
+                    awesome: "awsome",
+                    contribution: "contrubution",
+                    function: "fucntion",
+                    variable: "vairable",
+                    repository: "repositry",
+                    improvement: "improvemnt",
+                };
+
+                // Replace common words with typos
+                for (const [word, typo] of Object.entries(typoMap)) {
+                    const regex = new RegExp(`\\b${word}\\b`, "gi");
+                    newContent = newContent.replace(regex, typo);
+                }
+
+                // Random vowel drop (make it worse 😂)
+                newContent = newContent.replace(/[aeiou]/gi, (match) =>
+                    Math.random() < 0.2 ? "" : match
+                );
+
+                // Random character swap
+                newContent = newContent.replace(/\w{4,}/g, (word) => {
+                    if (Math.random() < 0.1) {
+                        const arr = word.split("");
+                        const i = Math.floor(Math.random() * (arr.length - 1));
+                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                        return arr.join("");
+                    }
+                    return word;
+                });
+
+                break;
+            }
+
             case "emoji":
                 const emojis = ["🚀", "✨", "🔥", "💯", "🎉", "💪", "⚡", "🌟"]
                 const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)]
@@ -55,10 +89,21 @@ export default function RepoPage() {
                 // Get a quote from https://zenquotes.io/api/random
                 const quoteRes = await fetch("/api/quotes")
                 const quoteData = await quoteRes.json()
-
-
                 newContent = newContent + `\n\n> "${quoteData.q}"`
                 break
+
+            case "ai":
+                const aiRes = await fetch(`/api/repos/${params.name}/ai/`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ description: repo.description }),
+                })
+                const aiData = await aiRes.json();
+                newContent = newContent += "\n\n" + aiData.readme;
+                break
+
+
+
             case "exclamation":
                 newContent = newContent.replace(/\./g, "!").replace(/\!/g, "!!!")
                 break
@@ -254,6 +299,15 @@ export default function RepoPage() {
                                     <span className="mr-2">‼️</span>
                                     More Exclamation!!!
                                 </Button>
+                                <Button
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base h-12"
+                                    onClick={() => handleContribute("ai")}
+                                    disabled={contributing}
+                                >
+                                    <span className="mr-2">🤖</span>
+                                    Let AI Contribute
+                                </Button>
+
                             </CardContent>
                         </Card>
 
