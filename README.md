@@ -58,6 +58,12 @@ Because Hacktoberfest contributions aren’t about quality.
 They’re about numbers. And memes.
 
 ---
+## 🖼️ Screenshots
+
+<img width="1200" height="630" alt="image" src="https://github.com/user-attachments/assets/6b9a36de-385e-45b5-94c3-993feda276b5" />
+
+<img width="1200" height="630" alt="image" src="https://github.com/user-attachments/assets/4a3e74dc-2cfa-449b-af02-ec9e190ebe44" />
+
 
 ## ⚡ Disclaimer
 
